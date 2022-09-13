@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 
-const DEFAULT_USERNAME = "borgoth@mortos.com"; //This is demo project so I hardcoded username and password
-const DEFAULT_PASSWORD = "12bindthem";
+const DEFAULT_USERNAME = process.env.DEFAULT_USERNAME; //This is demo project so I hardcoded username and password
+const DEFAULT_PASSWORD = process.env.DEFAULT_PASSWORD;
 
 type Data = {
   msg: string;
@@ -16,6 +16,8 @@ export default async function handler(
     case "POST":
       {
         const { username, password } = req.body;
+
+        console.log({ password, DEFAULT_PASSWORD });
 
         if (!username.length || !password.length)
           return res

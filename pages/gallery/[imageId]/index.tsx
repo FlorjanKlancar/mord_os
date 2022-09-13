@@ -33,7 +33,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const response = await axios.get(
     `https://jsonplaceholder.typicode.com/photos/${imageId}`
   );
-  if (response.status === 404) return { notFound: true };
+  console.log(response.status);
+  if (response.status !== 200) return { notFound: true };
 
   return { props: response.data };
 };
