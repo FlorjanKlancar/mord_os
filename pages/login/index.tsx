@@ -1,8 +1,14 @@
 import React, { useState } from "react";
-import { UserIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
+import {
+  UserIcon,
+  ArrowRightIcon,
+  WifiIcon,
+  InformationCircleIcon,
+} from "@heroicons/react/24/outline";
 import { loginFormModel } from "../../model/loginFormModel";
 import axios from "axios";
 import { useRouter } from "next/router";
+import dayjs from "dayjs";
 
 function LoginPage() {
   const router = useRouter();
@@ -17,6 +23,11 @@ function LoginPage() {
   const onSubmitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (loginForm.password.length === 0) {
+      setLoginError("Please provide password!");
+      return;
+    }
+
     try {
       const response = await axios.post("/api/login", loginForm);
       if (response.status === 200) {
@@ -27,9 +38,12 @@ function LoginPage() {
     }
   };
 
+  const formatedDate = dayjs().format("DD. MM. YYYY");
+
   return (
     <div className="h-screen bg-gradient-to-br from-sky-500 via-sky-900 to-indigo-900">
       <div className="flex flex-col space-y-8 justify-center items-center h-full w-full">
+        <div className="absolute top-5 left-5 text-xl">{formatedDate}</div>
         <div className="rounded-full bg-slate-500 w-48 h-48 flex items-center justify-center">
           <UserIcon className="w-24 h-24 " />
         </div>
@@ -58,6 +72,7 @@ function LoginPage() {
                 onChange={(e) =>
                   setLoginForm({ ...loginForm, password: e.target.value })
                 }
+                defaultValue={loginForm.password}
               />
               <button className="px-2 text-black bg-slate-400 rounded-xl opacity-70 hover:opacity-100 hover:bg-slate-700 hover:text-white">
                 <ArrowRightIcon className="w-5 h-5 " />
@@ -83,6 +98,20 @@ function LoginPage() {
             </div>
           </form>
         )}
+
+        <div className="flex space-x-5 absolute bottom-5 right-5 ">
+          <div className="relative flex flex-col items-center group">
+            <InformationCircleIcon className="w-8 h-8 hover:text-black cursor-pointer" />
+            <div className="absolute bottom-0 flex-col items-center hidden mb-6 group-hover:flex">
+              <span className="relative z-10 w-20 h-16 flex items-center justify-center text-center text-xs leading-none text-white whitespace-no-wrap bg-black shadow-lg">
+                Password is: 12bindthem
+              </span>
+              <div className="w-3 h-3 -mt-2 rotate-45 bg-black"></div>
+            </div>
+          </div>
+
+          <WifiIcon className="w-8 h-8 hover:text-black cursor-pointer" />
+        </div>
       </div>
     </div>
   );

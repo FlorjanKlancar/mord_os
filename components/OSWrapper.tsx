@@ -14,7 +14,7 @@ function OSWrapper({ pageTitle, children }: OSWrapperProps) {
         <title>{pageTitle}</title>
       </Head>
 
-      <BottomNavbar children={children} />
+      <BottomNavbar>{children}</BottomNavbar>
     </>
   );
 }
