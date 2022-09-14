@@ -42,7 +42,7 @@ export default async function handler(
     case "DELETE":
       {
         const { fileName } = req.query;
-        console.log({ fileName });
+
         try {
           fs.unlinkSync(`files/${fileName}.txt`);
 

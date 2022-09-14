@@ -18,7 +18,7 @@ function Table({ data: ReactTableData, tableHeaders }: TableProps) {
         col3: item.updatedAt,
         col4: item.size,
       })),
-    []
+    [ReactTableData]
   );
 
   const columns = useMemo(() => tableHeaders, []);
