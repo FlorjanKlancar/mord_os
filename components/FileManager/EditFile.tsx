@@ -1,11 +1,141 @@
-import React from "react";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
 import FileManagerWindowWrapper from "./FileManagerWindowWrapper";
+import { fileModel } from "../../model/fileModel";
+import dayjs from "dayjs";
+import { useQueryClient } from "@tanstack/react-query";
 
-function EditFile() {
+type EditFileProps = {
+  currentFile?: fileModel;
+};
+
+function EditFile({ currentFile }: EditFileProps) {
+  const router = useRouter();
+  const queryClient = useQueryClient();
+
+  const [formData, setFormData] = useState({
+    fileName: currentFile?.fileName ?? "",
+    fileBody: currentFile?.fileBody ?? "",
+  });
+
+  const submitHandler = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      const response = currentFile
+        ? await axios.post("/api/files", formData)
+        : await axios.put(`/api/files/${currentFile}`, {});
+
+      if (response.status === 200) {
+        toast.success(response.data.msg);
+      }
+    } catch (e: any) {
+      toast.error(e);
+    }
+    await queryClient.invalidateQueries(["files"]);
+    router.push("/files");
+  };
+
+  const removeHandler = async () => {
+    console.log("REMOVE HAND");
+    try {
+      const response = await axios.delete(
+        `/api/files/${currentFile?.fileName}`
+      );
+      console.log({ response });
+
+      if (response.status === 200) {
+        toast.success(response.data.msg);
+      }
+    } catch (e: any) {
+      toast.error(e);
+    }
+    await queryClient.invalidateQueries(["files"]);
+    router.push("/files");
+  };
+
   return (
     <FileManagerWindowWrapper isEditFilePage={true}>
-      1234
-      <div></div>
+      <form onSubmit={submitHandler}>
+        <div className="flex space-y-5 flex-col items-center px-4 py-5">
+          <div className="w-1/2">
+            {currentFile && (
+              <div className="flex justify-between mb-5">
+                <div className="text-sm flex space-x-2 items-center">
+                  <label className="block text-sm font-medium text-slate-300">
+                    Created at:
+                  </label>
+                  <span>
+                    {dayjs(currentFile.createdAt).format("DD. MM. YYYY, HH:mm")}
+                  </span>
+                </div>
+                <div className="text-sm flex space-x-2 items-center">
+                  <label className="block text-sm font-medium text-slate-300">
+                    Updated at:
+                  </label>
+                  <span>
+                    {dayjs(currentFile.updatedAt).format("DD. MM. YYYY, HH:mm")}
+                  </span>
+                </div>
+              </div>
+            )}
+
+            <label className="block text-xl font-medium text-slate-300">
+              File Name
+            </label>
+            <input
+              className="mt-1 pl-3 block h-12 text-black text-2xl w-full rounded-md outline-none border-gray-300 shadow-sm "
+              placeholder="Enter file name"
+              autoComplete="off"
+              value={formData.fileName}
+              onChange={(e: any) =>
+                setFormData({ ...formData, fileName: e.target.value })
+              }
+            />
+          </div>
+
+          <div className="w-1/2">
+            <label
+              htmlFor="File_data"
+              className="block text-xl font-medium text-slate-300"
+            >
+              File data
+            </label>
+            <div className="mt-1">
+              <textarea
+                autoComplete="off"
+                rows={8}
+                className="mt-1 pl-3 pt-3 block outline-none w-full rounded-md border-gray-300 shadow-sm text-2xl text-black"
+                placeholder="Enter some description..."
+                defaultValue={formData.fileBody}
+                onChange={(e: any) =>
+                  setFormData({ ...formData, fileBody: e.target.value })
+                }
+              ></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div className="flex justify-center space-x-4">
+          {currentFile && (
+            <button
+              className="bg-rose-800 px-12 py-4 rounded-xl"
+              type="button"
+              onClick={removeHandler}
+            >
+              Delete file
+            </button>
+          )}
+          <button
+            type="submit"
+            className="bg-emerald-800 px-12 py-4 rounded-xl"
+          >
+            {currentFile ? "Create file" : "Edit file"}
+          </button>
+        </div>
+      </form>
     </FileManagerWindowWrapper>
   );
 }

@@ -49,7 +49,7 @@ function OSWindow({
         <div className="flex space-x-5">
           {(isEditFilePage || viewImagePage) && (
             <ArrowUturnLeftIcon
-              className="h-8 w-8 hover:text-slate-400 cursor-pointer "
+              className="h-8 w-8 hover:text-slate-400 cursor-pointer"
               onClick={() =>
                 router.push(isEditFilePage ? "/files" : "/gallery")
               }

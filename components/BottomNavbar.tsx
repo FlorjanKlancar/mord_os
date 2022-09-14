@@ -1,15 +1,17 @@
 import React from "react";
 import {
-  UserCircleIcon,
   HomeIcon,
   DocumentMagnifyingGlassIcon,
   PhotoIcon,
   ArrowLeftOnRectangleIcon,
+  GlobeEuropeAfricaIcon,
 } from "@heroicons/react/24/outline";
 import { menuModel } from "../model/menuModel";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import dayjs from "dayjs";
+import { useDispatch } from "react-redux";
+import { authActions } from "../store/auth-slice";
 
 type BottomNavbarProps = {
   children: React.ReactNode;
@@ -17,6 +19,7 @@ type BottomNavbarProps = {
 
 function BottomNavbar({ children }: BottomNavbarProps) {
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const bottomMenuArray: menuModel[] = [
     {
@@ -35,9 +38,9 @@ function BottomNavbar({ children }: BottomNavbarProps) {
       path: "/gallery",
     },
     {
-      title: "Profile",
-      icon: <UserCircleIcon className="w-12 h-12" />,
-      path: "/profile",
+      title: "Browser",
+      icon: <GlobeEuropeAfricaIcon className="w-12 h-12" />,
+      path: "/browser",
     },
   ];
 
@@ -54,11 +57,18 @@ function BottomNavbar({ children }: BottomNavbarProps) {
     }
   };
 
+  const signOutHandler = () => {
+    dispatch(authActions.logOut());
+  };
+
   return (
     <div className="w-full h-screen bg-gradient-to-br from-blue-900 via-indigo-800 to-violet-900">
       <div className="absolute top-5 left-8 text-xl">{formatedDate}</div>
       <div className="absolute top-5 right-8 text-xl">
-        <ArrowLeftOnRectangleIcon className="w-8 h-8" />
+        <ArrowLeftOnRectangleIcon
+          className="h-8 w-8 hover:text-slate-400 cursor-pointer"
+          onClick={signOutHandler}
+        />
       </div>
       {children}
       <section className="block fixed inset-x-0 bottom-0 z-10 bg-slate-600 opacity-40 shadow p-4 text-black">

@@ -17,8 +17,6 @@ export default async function handler(
       {
         const { username, password } = req.body;
 
-        console.log({ password, DEFAULT_PASSWORD });
-
         if (!username.length || !password.length)
           return res
             .status(500)

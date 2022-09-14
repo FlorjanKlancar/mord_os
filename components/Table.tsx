@@ -16,6 +16,7 @@ function Table({ data: ReactTableData, tableHeaders }: TableProps) {
         col1: item.fileName,
         col2: item.createdAt,
         col3: item.updatedAt,
+        col4: item.size,
       })),
     []
   );

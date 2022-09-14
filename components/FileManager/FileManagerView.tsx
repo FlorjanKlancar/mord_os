@@ -1,36 +1,21 @@
+import dayjs from "dayjs";
 import React from "react";
+import { fileModel } from "../../model/fileModel";
 import Table from "../Table";
 import FileManagerWindowWrapper from "./FileManagerWindowWrapper";
 
-function FileManagerView() {
-  const dummyFiles = [
-    {
-      fileName: "first_file.txt",
-      createdAt: "22.1.2222",
-      updatedAt: "22.2.2222",
-    },
-    {
-      fileName: "third_file.txt",
-      createdAt: "22.8.2222",
-      updatedAt: "22.9.2222",
-    },
-    {
-      fileName: "second_file.txt",
-      createdAt: "22.6.2222",
-      updatedAt: "22.7.2222",
-    },
-    {
-      fileName: "fourth_file.txt",
-      createdAt: "22.4.2222",
-      updatedAt: "22.5.2222",
-    },
-    {
-      fileName: "fifth_file.txt",
-      createdAt: "22.2.2222",
-      updatedAt: "22.3.2222",
-    },
-  ];
+type FileManagerViewProps = {
+  files: fileModel[];
+};
 
+function FileManagerView({ files }: FileManagerViewProps) {
+  const fileData = files.map((file: fileModel) => ({
+    ...file,
+    createdAt: dayjs(file.createdAt).format("DD. MM. YYYY, HH:mm"),
+    updatedAt: dayjs(file.updatedAt).format("DD. MM. YYYY, HH:mm"),
+    size: `${file.size} bytes`,
+  }));
+  console.log("table data", fileData);
   const tableHeaders = [
     {
       Header: "File name",
@@ -44,11 +29,15 @@ function FileManagerView() {
       Header: "Updated at",
       accessor: "col3", // accessor is the "key" in the data
     },
+    {
+      Header: "Size",
+      accessor: "col4", // accessor is the "key" in the data
+    },
   ];
 
   return (
     <FileManagerWindowWrapper isEditFilePage={false}>
-      <Table tableHeaders={tableHeaders} data={dummyFiles} />
+      <Table tableHeaders={tableHeaders} data={fileData} />
     </FileManagerWindowWrapper>
   );
 }

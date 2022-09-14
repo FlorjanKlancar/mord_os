@@ -30,11 +30,12 @@ export default ViewSpecificImage;
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { imageId } = context.query;
 
-  const response = await axios.get(
-    `https://jsonplaceholder.typicode.com/photos/${imageId}`
-  );
-  console.log(response.status);
-  if (response.status !== 200) return { notFound: true };
-
-  return { props: response.data };
+  try {
+    const response = await axios.get(
+      `https://jsonplaceholder.typicode.com/photos/${imageId}`
+    );
+    return { props: response.data };
+  } catch (e: any) {
+    return { notFound: true };
+  }
 };
