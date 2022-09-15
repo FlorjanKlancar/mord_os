@@ -8,11 +8,9 @@ const FileManagerPage = () => {
   if (isLoading) return <div>Loading</div>;
   if (isError) return <div>Error: {isError}</div>;
 
-  console.log("data from hook", data);
-
   return (
     <OSWrapper pageTitle="File Manager">
-      <FileManagerView files={data} />
+      {data && <FileManagerView files={data} />}
     </OSWrapper>
   );
 };

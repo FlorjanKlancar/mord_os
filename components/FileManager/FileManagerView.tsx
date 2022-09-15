@@ -15,7 +15,7 @@ function FileManagerView({ files }: FileManagerViewProps) {
     updatedAt: dayjs(file.updatedAt).format("DD. MM. YYYY, HH:mm"),
     size: `${file.size} bytes`,
   }));
-  console.log("table data", fileData);
+
   const tableHeaders = [
     {
       Header: "File name",

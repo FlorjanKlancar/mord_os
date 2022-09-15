@@ -33,7 +33,7 @@ function FileManagerWindowWrapper({
                 <div className="absolute bottom-5 right-5">
                   <PlusCircleIcon
                     className="w-12 h-12 hover:text-slate-400 cursor-pointer"
-                    onClick={() => router.push("/files/new")}
+                    onClick={() => router.push("/files/file-creation")}
                   />
                 </div>
               )}

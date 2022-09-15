@@ -23,34 +23,35 @@ function EditFile({ currentFile }: EditFileProps) {
   const submitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    const loadingToast = toast.loading("Loading...");
+
     try {
-      const response = currentFile
+      const response = !currentFile
         ? await axios.post("/api/files", formData)
         : await axios.put(`/api/files/${currentFile}`, {});
 
       if (response.status === 200) {
-        toast.success(response.data.msg);
+        toast.success(response.data.msg, { id: loadingToast });
       }
     } catch (e: any) {
-      toast.error(e);
+      toast.error(e, { id: loadingToast });
     }
     await queryClient.invalidateQueries(["files"]);
     router.push("/files");
   };
 
   const removeHandler = async () => {
-    console.log("REMOVE HAND");
+    const loadingToast = toast.loading("Loading...");
     try {
       const response = await axios.delete(
         `/api/files/${currentFile?.fileName}`
       );
-      console.log({ response });
 
       if (response.status === 200) {
-        toast.success(response.data.msg);
+        toast.success(response.data.msg, { id: loadingToast });
       }
     } catch (e: any) {
-      toast.error(e);
+      toast.error(e, { id: loadingToast });
     }
     await queryClient.invalidateQueries(["files"]);
     router.push("/files");
@@ -132,7 +133,7 @@ function EditFile({ currentFile }: EditFileProps) {
             type="submit"
             className="bg-emerald-800 px-12 py-4 rounded-xl"
           >
-            {currentFile ? "Create file" : "Edit file"}
+            {!currentFile ? "Create file" : "Edit file"}
           </button>
         </div>
       </form>
