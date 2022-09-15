@@ -36,9 +36,9 @@ export default async function handler(
 const getAllFilesInDir = async () => {
   let response: fileModel[] = [];
   try {
-    const files = fs.readdirSync("public/files");
+    const files = fs.readdirSync("/files");
     for (const file of files) {
-      const stats = fs.statSync(`public/files/${file}`);
+      const stats = fs.statSync(`/files/${file}`);
 
       response.push({
         fileName: file,
