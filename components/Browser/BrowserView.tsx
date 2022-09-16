@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import OpenButton from "../OpenButton";
 import OSWindow from "../OSWindow";
+import Results from "./Results";
 import Search from "./Search";
 
 function BrowserView() {
   const [isShown, setIsShown] = useState<boolean>(true);
   const [searchInput, setSearchInput] = useState<string>("");
+  const [queryInput, setQueryInput] = useState<string>("");
 
   const submitHandler = async (e: any) => {
     e.preventDefault();
 
-    console.log("SEARCH", searchInput);
+    setQueryInput(searchInput);
+    console.log({ searchInput }, { queryInput });
   };
 
   return (
@@ -29,8 +32,15 @@ function BrowserView() {
                   setSearchInput={setSearchInput}
                   searchInput={searchInput}
                   submitHandler={submitHandler}
+                  setQueryInput={setQueryInput}
                 />
-                <div className="flex justify-start items-start">Results:</div>
+              </div>
+              <div className="mt-5">
+                {queryInput.length ? (
+                  <Results searchInput={queryInput} />
+                ) : (
+                  <div>Enter something in the search input :)</div>
+                )}
               </div>
             </OSWindow>
           ) : (

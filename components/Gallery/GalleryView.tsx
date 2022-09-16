@@ -9,7 +9,6 @@ import GalleryViewSkeleton from "./GalleryViewSkeleton";
 import GalleryWindowWrapper from "./GalleryWindowWrapper";
 
 function GalleryView() {
-  const queryClient = useQueryClient();
   const [albumId, setAlbumId] = useState<number>(1);
   const { data, isLoading, isError } = useGallery(albumId);
 

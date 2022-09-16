@@ -5,9 +5,15 @@ type SearchProps = {
   searchInput: string;
   setSearchInput: (searchInput: string) => void;
   submitHandler: (e: any) => void;
+  setQueryInput: (searchInput: string) => void;
 };
 
-function Search({ searchInput, setSearchInput, submitHandler }: SearchProps) {
+function Search({
+  searchInput,
+  setSearchInput,
+  submitHandler,
+  setQueryInput,
+}: SearchProps) {
   return (
     <form className="w-1/3" onSubmit={submitHandler}>
       <div className="h-12 flex justify-between items-center border-2 rounded-full px-4">
@@ -27,7 +33,10 @@ function Search({ searchInput, setSearchInput, submitHandler }: SearchProps) {
         <div>
           <XMarkIcon
             className="h-6 w-6 hover:text-slate-400 cursor-pointer "
-            onClick={() => setSearchInput("")}
+            onClick={() => {
+              setSearchInput("");
+              setQueryInput("");
+            }}
           />
         </div>
       </div>

@@ -23,7 +23,7 @@ export default async function handler(
         const { fileName, fileBody } = req.body;
 
         try {
-          fs.writeFileSync(`files/${fileName}.txt`, fileBody);
+          fs.writeFileSync(`public/files/${fileName}.txt`, fileBody);
           res.status(200).json({ msg: "File saved successfully!" });
         } catch (e: any) {
           res.status(500).json({ msg: e });
@@ -36,9 +36,9 @@ export default async function handler(
 const getAllFilesInDir = async () => {
   let response: fileModel[] = [];
   try {
-    const files = fs.readdirSync("/files");
+    const files = fs.readdirSync("public//files");
     for (const file of files) {
-      const stats = fs.statSync(`/files/${file}`);
+      const stats = fs.statSync(`public//files/${file}`);
 
       response.push({
         fileName: file,
