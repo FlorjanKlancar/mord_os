@@ -27,8 +27,8 @@ function ResultCard({ item }: ResultCardProps) {
       )}
 
       <div className="flex space-x-3">
-        {item.images.map((image: string) => (
-          <div>
+        {item.images.map((image: string, i: number) => (
+          <div key={i}>
             <img src={image} className="w-20 h-20" />
           </div>
         ))}
