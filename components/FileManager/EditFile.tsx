@@ -63,10 +63,10 @@ function EditFile({ currentFile }: EditFileProps) {
     <FileManagerWindowWrapper isEditFilePage={true}>
       <form onSubmit={submitHandler}>
         <div className="flex space-y-5 flex-col items-center px-4 py-5">
-          <div className="w-1/2">
+          <div className="w-full md:w-1/2">
             {currentFile && (
-              <div className="flex justify-between mb-5">
-                <div className="text-sm flex space-x-2 items-center">
+              <div className="flex flex-col space-y-2 md:flex-row md:space-y-0 justify-between mb-5">
+                <div className="text-sm flex  space-x-2 items-center">
                   <label className="block text-sm font-medium text-slate-300">
                     Created at:
                   </label>
@@ -99,7 +99,7 @@ function EditFile({ currentFile }: EditFileProps) {
             />
           </div>
 
-          <div className="w-1/2">
+          <div className="w-full md:w-1/2">
             <label
               htmlFor="File_data"
               className="block text-xl font-medium text-slate-300"
@@ -121,10 +121,10 @@ function EditFile({ currentFile }: EditFileProps) {
           </div>
         </div>
 
-        <div className="flex justify-center space-x-4">
+        <div className="flex  space-x-2 md:w-1/2 m-auto">
           {currentFile && (
             <button
-              className="bg-rose-800 px-12 py-4 rounded-xl"
+              className="bg-rose-800 w-full px-3 py-3 text-base md:text-xl md:px-12 md:py-4 rounded-xl"
               type="button"
               onClick={removeHandler}
             >
@@ -133,7 +133,7 @@ function EditFile({ currentFile }: EditFileProps) {
           )}
           <button
             type="submit"
-            className="bg-emerald-800 px-12 py-4 rounded-xl"
+            className="bg-emerald-800 w-full px-3 py-3 text-base md:text-xl md:px-12 md:py-4 rounded-xl"
           >
             {!currentFile ? "Create file" : "Edit file"}
           </button>

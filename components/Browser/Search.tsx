@@ -15,14 +15,14 @@ function Search({
   setQueryInput,
 }: SearchProps) {
   return (
-    <form className="w-1/3" onSubmit={submitHandler}>
+    <form className="w-full md:w-1/3" onSubmit={submitHandler}>
       <div className="h-12 flex justify-between items-center border-2 rounded-full px-4">
         <div className="p-4">
           <MagnifyingGlassIcon className="h-6 w-6 hover:text-slate-400 cursor-pointer " />
         </div>
 
         <input
-          className="py-0.5 text-slate-200 leading-tight focus:outline-none w-11/12 bg-slate-900 "
+          className="py-0.5 text-slate-200 leading-tight focus:outline-none w-11/12 bg-slate-900 text-base md:text-xl"
           id="search"
           type="text"
           placeholder="Search"

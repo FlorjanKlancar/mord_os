@@ -19,7 +19,7 @@ function FileManagerWindowWrapper({
 
   return (
     <div className="h-full">
-      <div className="flex items-center h-full px-12 text-3xl">
+      <div className="flex items-center h-full px-4 sm:px-12 text-3xl">
         <div className="h-3/4 w-full relative -mt-10">
           {isShown ? (
             <OSWindow

@@ -26,7 +26,7 @@ function FileManagerViewSkeleton({
           <tbody>
             {[...Array(numberOfRows)].map((e, i: number) => (
               <tr key={i} className="hover:bg-slate-500 cursor-pointer ">
-                {[...Array(numberOfHeadings)].map((i: number) => (
+                {[...Array(numberOfHeadings)].map((e, i: number) => (
                   <td key={i} className="p-2">
                     <div className="w-5/6 h-8 animate-pulse bg-slate-700 rounded-xl "></div>
                   </td>

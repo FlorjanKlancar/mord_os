@@ -17,7 +17,7 @@ function BrowserView() {
 
   return (
     <div className="h-full">
-      <div className="flex items-center h-full px-12 text-3xl">
+      <div className="flex items-center h-full px-4 sm:px-12 text-3xl">
         <div className="h-3/4 w-full relative -mt-10">
           {isShown ? (
             <OSWindow
@@ -34,7 +34,7 @@ function BrowserView() {
                   setQueryInput={setQueryInput}
                 />
               </div>
-              <div className="mt-5">
+              <div className="mt-5 text-base flex items-center h-full md:text-xl">
                 {queryInput.length ? (
                   <Results searchInput={queryInput} />
                 ) : (

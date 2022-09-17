@@ -26,7 +26,7 @@ function RSSViewer() {
           refreshFunction={refreshData}
           isEditFilePage={false}
         >
-          <div className="flex flex-col max-h-[527px] overflow-y-auto">
+          <div className="flex flex-col max-h-[527px] overflow-y-auto ">
             <Scrollbars style={{ height: 527 }}>
               <RSSDataView />
             </Scrollbars>

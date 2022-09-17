@@ -27,7 +27,7 @@ function Table({ data: ReactTableData, tableHeaders }: TableProps) {
     useTable({ columns, data }, useSortBy);
 
   return (
-    <div className="w-full h-full ">
+    <div className="w-full h-full overflow-x-auto xl:overflow-hidden text-xl xl:text-3xl">
       <table className="table w-full text-center" {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup, i) => (
@@ -37,7 +37,7 @@ function Table({ data: ReactTableData, tableHeaders }: TableProps) {
                   {...column.getHeaderProps(column.getSortByToggleProps())}
                   key={index}
                 >
-                  <div className="flex flex-row justify-center items-center ">
+                  <div className="flex flex-row justify-center items-center mx-5">
                     {column.render("Header")}
 
                     {column.isSorted ? (

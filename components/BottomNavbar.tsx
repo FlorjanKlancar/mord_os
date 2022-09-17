@@ -24,22 +24,22 @@ function BottomNavbar({ children }: BottomNavbarProps) {
   const bottomMenuArray: menuModel[] = [
     {
       title: "Home",
-      icon: <HomeIcon className="w-12 h-12" />,
+      icon: <HomeIcon className="w-8 h-8 sm:w-12 sm:h-12" />,
       path: "/",
     },
     {
       title: "File manager",
-      icon: <DocumentMagnifyingGlassIcon className="w-12 h-12" />,
+      icon: <DocumentMagnifyingGlassIcon className="w-8 h-8 sm:w-12 sm:h-12" />,
       path: "/files",
     },
     {
       title: "Gallery",
-      icon: <PhotoIcon className="w-12 h-12" />,
+      icon: <PhotoIcon className="w-8 h-8 sm:w-12 sm:h-12" />,
       path: "/gallery",
     },
     {
       title: "Browser",
-      icon: <GlobeEuropeAfricaIcon className="w-12 h-12" />,
+      icon: <GlobeEuropeAfricaIcon className="w-8 h-8 sm:w-12 sm:h-12" />,
       path: "/browser",
     },
   ];
@@ -71,19 +71,19 @@ function BottomNavbar({ children }: BottomNavbarProps) {
         />
       </div>
       {children}
-      <section className="block fixed inset-x-0 bottom-0 z-10 bg-slate-600 opacity-40 shadow p-4 text-black">
-        <div className="flex flex-row justify-around ">
+      <section className="block fixed inset-x-0 bottom-0 z-10 bg-slate-600 opacity-40 shadow p-2 text-black">
+        <div className="flex flex-row justify-around">
           {bottomMenuArray.map((item: menuModel, i: number) => (
             <Link href={item.path} key={i}>
               <div
-                className={`w-28 cursor-pointer  flex-col flex items-center hover:text-white hover:shadow-xl hover:shadow-black hover:bg-black hover:rounded-xl group ${
+                className={`w-16 sm:w-28 cursor-pointer py-3 sm:py-0 flex-col justify-center flex items-center hover:text-white hover:shadow-xl hover:shadow-black hover:bg-black hover:rounded-xl group ${
                   checkIfRouteIsActive(router.asPath, item.path)
                     ? "text-white bg-black shadow-xl shadow-black rounded-xl "
                     : "text-slate-100"
                 }`}
               >
                 {item.icon}
-                {item.title}
+                <span className="hidden sm:block">{item.title}</span>
               </div>
             </Link>
           ))}
