@@ -1,15 +1,18 @@
 import React from "react";
 import GalleryWindowWrapper from "./GalleryWindowWrapper";
 
-function GalleryViewSkeleton() {
-  const skeletonRows = [1, 2, 3, 4, 5];
+type GalleryViewSkeletonProps = {
+  numberOfRows: number;
+};
+
+function GalleryViewSkeleton({ numberOfRows }: GalleryViewSkeletonProps) {
   return (
     <GalleryWindowWrapper viewImagePage={false}>
       <div className="flex flex-col max-h-[620px] divide-y-2 overflow-y-auto">
         <div>
-          {skeletonRows.map((skeletonRow: number) => (
+          {[...Array(numberOfRows)].map((e, i: number) => (
             <div
-              key={skeletonRow}
+              key={i}
               className="flex justify-between text-base  hover:bg-slate-500 cursor-pointer px-2 py-3 rounded-xl"
             >
               <div className="flex flex-col space-y-5">

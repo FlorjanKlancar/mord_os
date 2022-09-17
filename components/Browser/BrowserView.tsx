@@ -39,7 +39,12 @@ function BrowserView() {
                 {queryInput.length ? (
                   <Results searchInput={queryInput} />
                 ) : (
-                  <div>Enter something in the search input :)</div>
+                  <div className="flex flex-col space-y-3">
+                    <div>Enter something in the search input :)</div>
+                    <div>
+                      Try searching something like phone, plant, motorcycle...
+                    </div>
+                  </div>
                 )}
               </div>
             </OSWindow>

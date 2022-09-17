@@ -29,7 +29,8 @@ export default async function handler(
       break;
     case "PUT":
       {
-        const { fileName, fileBody } = req.body;
+        const { fileName } = req.query;
+        const { fileBody } = req.body;
 
         try {
           fs.writeFileSync(`public/files/${fileName}.txt`, fileBody);

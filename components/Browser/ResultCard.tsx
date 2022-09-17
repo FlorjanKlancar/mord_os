@@ -37,7 +37,7 @@ function ResultCard({ item }: ResultCardProps) {
       <div className="flex space-x-2 items-center">
         {item.rating && (
           <div>
-            <div className="text-base w-28 flex  border-2 border-amber-700 rounded-xl items-center justify-center py-1 text-amber-500">
+            <div className="text-base px-4 flex  border-2 border-amber-700 rounded-xl items-center justify-center py-1 text-amber-500">
               <StarIcon className="h-4 w-4 mr-1" />
               {item.rating} / 5
             </div>
@@ -45,7 +45,7 @@ function ResultCard({ item }: ResultCardProps) {
         )}
         {item.category && (
           <div>
-            <div className="text-base w-28 flex capitalize border-2 border-sky-700 rounded-xl items-center justify-center py-1 text-sky-500">
+            <div className="text-base px-4 flex capitalize border-2 border-sky-700 rounded-xl items-center justify-center py-1 text-sky-500">
               {item.category}
             </div>
           </div>

@@ -28,7 +28,9 @@ function EditFile({ currentFile }: EditFileProps) {
     try {
       const response = !currentFile
         ? await axios.post("/api/files", formData)
-        : await axios.put(`/api/files/${currentFile}`, {});
+        : await axios.put(`/api/files/${formData.fileName}`, {
+            fileBody: formData.fileBody,
+          });
 
       if (response.status === 200) {
         toast.success(response.data.msg, { id: loadingToast });
@@ -56,6 +58,8 @@ function EditFile({ currentFile }: EditFileProps) {
     await queryClient.invalidateQueries(["files"]);
     router.push("/files");
   };
+
+  console.log({ formData });
 
   return (
     <FileManagerWindowWrapper isEditFilePage={true}>
@@ -110,7 +114,7 @@ function EditFile({ currentFile }: EditFileProps) {
                 rows={8}
                 className="mt-1 pl-3 pt-3 block outline-none w-full rounded-md border-gray-300 shadow-sm text-2xl text-black"
                 placeholder="Enter some description..."
-                defaultValue={formData.fileBody}
+                value={formData.fileBody}
                 onChange={(e: any) =>
                   setFormData({ ...formData, fileBody: e.target.value })
                 }

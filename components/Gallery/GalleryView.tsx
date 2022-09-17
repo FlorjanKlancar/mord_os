@@ -12,7 +12,7 @@ function GalleryView() {
   const [albumId, setAlbumId] = useState<number>(1);
   const { data, isLoading, isError } = useGallery(albumId);
 
-  if (isLoading) return <GalleryViewSkeleton />;
+  if (isLoading) return <GalleryViewSkeleton numberOfRows={5} />;
   if (isError) return <div>Error: {isError}</div>;
 
   return (
