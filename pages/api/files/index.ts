@@ -23,8 +23,11 @@ export default async function handler(
       {
         const { fileName, fileBody } = req.body;
 
+        const dirRelativeToPublicFolder = "files";
+        const dir = path.resolve("./public", dirRelativeToPublicFolder);
+
         try {
-          fs.writeFileSync(`public/files/${fileName}.txt`, fileBody);
+          fs.writeFileSync(`${dir}/${fileName}.txt`, fileBody);
           res.status(200).json({ msg: "File saved successfully!" });
         } catch (e: any) {
           res.status(500).json({ msg: e });
@@ -38,7 +41,6 @@ const getAllFilesInDir = async () => {
   let response: fileModel[] = [];
   try {
     const dirRelativeToPublicFolder = "files";
-
     const dir = path.resolve("./public", dirRelativeToPublicFolder);
 
     const files = fs.readdirSync(dir);
