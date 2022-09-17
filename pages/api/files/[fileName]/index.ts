@@ -37,8 +37,9 @@ export default async function handler(
         const dir = path.resolve("./public", dirRelativeToPublicFolder);
 
         try {
-          fs.writeFileSync(`${dir}/${fileName}.txt`, fileBody);
-          res.status(200).json({ msg: "File saved successfully!" });
+          fs.writeFile(`${dir}/${fileName}.txt`, fileBody, () =>
+            res.status(200).json({ msg: "File saved successfully!" })
+          );
         } catch (e: any) {
           res.status(500).json({ msg: e });
         }
@@ -51,9 +52,9 @@ export default async function handler(
         const dirRelativeToPublicFolder = "files";
         const dir = path.resolve("./public", dirRelativeToPublicFolder);
         try {
-          fs.unlinkSync(`${dir}/${fileName}.txt`);
-
-          res.status(200).json({ msg: "File deleted successfully!" });
+          fs.rm(`${dir}/${fileName}.txt`, () =>
+            res.status(200).json({ msg: "File deleted successfully!" })
+          );
         } catch (e: any) {
           res.status(500).json({ msg: e });
         }
