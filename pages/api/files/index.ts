@@ -42,7 +42,6 @@ const getAllFilesInDir = async () => {
     const dir = path.resolve("./public", dirRelativeToPublicFolder);
 
     const files = fs.readdirSync(dir);
-    console.log({ files });
 
     for (const file of files) {
       const stats = fs.statSync(`public/files/${file}`);

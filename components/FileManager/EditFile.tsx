@@ -59,8 +59,6 @@ function EditFile({ currentFile }: EditFileProps) {
     router.push("/files");
   };
 
-  console.log({ formData });
-
   return (
     <FileManagerWindowWrapper isEditFilePage={true}>
       <form onSubmit={submitHandler}>

@@ -10,7 +10,6 @@ type resultsProps = {
 
 function Results({ searchInput }: resultsProps) {
   const { data, isLoading, isError } = useBrowser(searchInput);
-  console.log({ data });
 
   if (isLoading) return <div>Loading</div>;
   if (isError) return <div>Error: {isError}</div>;

@@ -1,10 +1,15 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import fs from "fs";
+import path from "path";
 
 export const getFileInfo = async (fileName: string) => {
   try {
-    const fileStats = fs.statSync(`public/files/${fileName}.txt`);
-    const fileBody = fs.readFileSync(`public/files/${fileName}.txt`, "utf8");
+    const dirRelativeToPublicFolder = "files";
+
+    const dir = path.resolve("./public", dirRelativeToPublicFolder);
+
+    const fileStats = fs.statSync(`${dir}/${fileName}.txt`);
+    const fileBody = fs.readFileSync(`${dir}/${fileName}.txt`, "utf8");
 
     return {
       fileName,
@@ -23,10 +28,7 @@ export default async function handler(
 ) {
   switch (req.method) {
     default:
-    case "GET":
-      {
-      }
-      break;
+
     case "PUT":
       {
         const { fileName } = req.query;

@@ -13,7 +13,6 @@ function BrowserView() {
     e.preventDefault();
 
     setQueryInput(searchInput);
-    console.log({ searchInput }, { queryInput });
   };
 
   return (
