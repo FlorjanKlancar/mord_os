@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import fs from "fs";
 import { fileModel } from "../../../model/fileModel";
+import path from "path";
 
 export default async function handler(
   req: NextApiRequest,
@@ -36,9 +37,15 @@ export default async function handler(
 const getAllFilesInDir = async () => {
   let response: fileModel[] = [];
   try {
-    const files = fs.readdirSync("public//files");
+    const dirRelativeToPublicFolder = "files";
+
+    const dir = path.resolve("./public", dirRelativeToPublicFolder);
+
+    const files = fs.readdirSync(dir);
+    console.log({ files });
+
     for (const file of files) {
-      const stats = fs.statSync(`public//files/${file}`);
+      const stats = fs.statSync(`public/files/${file}`);
 
       response.push({
         fileName: file,
