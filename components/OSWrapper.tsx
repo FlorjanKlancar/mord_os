@@ -1,6 +1,6 @@
 import Head from "next/head";
 import React from "react";
-import BottomNavbar from "./BottomNavbar";
+import Navbar from "./Navbar";
 
 type OSWrapperProps = {
   pageTitle: string;
@@ -14,7 +14,7 @@ function OSWrapper({ pageTitle, children }: OSWrapperProps) {
         <title>{pageTitle}</title>
       </Head>
 
-      <BottomNavbar>{children}</BottomNavbar>
+      <Navbar>{children}</Navbar>
     </>
   );
 }

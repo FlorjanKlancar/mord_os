@@ -5,6 +5,7 @@ import {
   PhotoIcon,
   ArrowLeftOnRectangleIcon,
   GlobeEuropeAfricaIcon,
+  CameraIcon,
 } from "@heroicons/react/24/outline";
 import { menuModel } from "../model/menuModel";
 import Link from "next/link";
@@ -61,10 +62,18 @@ function BottomNavbar({ children }: BottomNavbarProps) {
     dispatch(authActions.logOut());
   };
 
+  console.log(router.asPath);
+
   return (
     <div className="w-full h-screen bg-gradient-to-br from-blue-900 via-indigo-800 to-violet-900">
       <div className="absolute top-5 left-8 text-xl">{formatedDate}</div>
-      <div className="absolute top-5 right-8 text-xl">
+      <div className="absolute flex top-5 right-8 text-xl space-x-5">
+        <CameraIcon
+          className={`h-8 w-8 hover:text-slate-400 cursor-pointer  ${
+            router.asPath === "/camera" ? "text-black" : ""
+          }`}
+          onClick={() => router.push("/camera")}
+        />
         <ArrowLeftOnRectangleIcon
           className="h-8 w-8 hover:text-slate-400 cursor-pointer"
           onClick={signOutHandler}
