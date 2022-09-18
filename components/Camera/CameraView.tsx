@@ -6,14 +6,16 @@ function CameraView() {
   return (
     <div className="h-full">
       <div className="flex items-center h-full px-4 sm:px-12 text-3xl">
-        <div className="h-3/4 w-full relative -mt-10">
+        <div className="w-full relative -mt-10">
           <OSWindow
             title={"Camera"}
             isShown={true}
             setIsShown={() => {}}
             isEditFilePage={false}
           >
-            <Webcam />
+            <div className="flex items-center justify-center">
+              <Webcam />
+            </div>
           </OSWindow>
         </div>
       </div>
