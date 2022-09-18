@@ -62,8 +62,6 @@ function BottomNavbar({ children }: BottomNavbarProps) {
     dispatch(authActions.logOut());
   };
 
-  console.log(router.asPath);
-
   return (
     <div className="w-full h-screen bg-gradient-to-br from-blue-900 via-indigo-800 to-violet-900">
       <div className="absolute top-5 left-8 text-xl">{formatedDate}</div>
