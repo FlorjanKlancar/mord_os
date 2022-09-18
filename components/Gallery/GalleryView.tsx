@@ -1,5 +1,3 @@
-import { useQueryClient } from "@tanstack/react-query";
-import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import Scrollbars from "react-custom-scrollbars";

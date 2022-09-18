@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-import { useComments } from "../../hooks/useComments";
-import { commentsModel } from "../../model/commentsModel";
 import OSWindow from "../OSWindow";
 import { Scrollbars } from "react-custom-scrollbars";
 import { useQueryClient } from "@tanstack/react-query";
 import OpenButton from "../OpenButton";
-import RSSViewerSkeleton from "./RSSViewerSkeleton";
 import RSSDataView from "./RSSDataView";
 
 function RSSViewer() {

@@ -1,5 +1,4 @@
 import React from "react";
-import OSWindow from "../OSWindow";
 
 type RSSViewerSkeletonProps = {
   numberOfRows: number;

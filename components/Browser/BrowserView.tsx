@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import OpenButton from "../OpenButton";
 import OSWindow from "../OSWindow";
 import Results from "./Results";
